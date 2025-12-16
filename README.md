@@ -12,36 +12,59 @@ A real-time hand sign detection web application built with Flask, MediaPipe, and
 
 ## Requirements
 
-- Python 3.7+
+- Python 3.8 - 3.12 (recommended: Python 3.12)
 - Webcam/Camera
+- Windows/Linux/macOS
 
 ## Installation
 
 1. Clone this repository:
 ```bash
-git clone <repository-url>
-cd hand-detect-master
+git clone https://github.com/soumyakumargupta/Hand-Sign-Detection.git
+cd Hand-Sign-Detection
 ```
 
-2. Install required dependencies:
+2. Create a virtual environment (recommended):
+```bash
+# Windows
+python -m venv venv312
+venv312\Scripts\activate
+
+# Linux/macOS
+python3 -m venv venv312
+source venv312/bin/activate
+```
+
+3. Install required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
+
+**Note:** If you encounter issues with MediaPipe or TensorFlow, ensure you're using Python 3.8-3.12. Python 3.13+ is not yet supported by MediaPipe.
 
 ## Usage
 
 ### Running the Flask Web Application
 
-1. Start the Flask application:
+1. Activate the virtual environment (if not already activated):
+```bash
+# Windows
+venv312\Scripts\activate
+
+# Linux/macOS
+source venv312/bin/activate
+```
+
+2. Start the Flask application:
 ```bash
 python app.py
 ```
 
-2. Open your web browser and go to `http://localhost:5000`
+3. Open your web browser and go to `http://localhost:5000`
 
-3. Allow camera permissions when prompted
+4. Allow camera permissions when prompted
 
-4. Show hand signs in front of the camera to see real-time predictions
+5. Show hand signs in front of the camera to see real-time predictions
 
 ### Running the Demo Script
 
@@ -50,10 +73,15 @@ Alternatively, you can run the demo script:
 python demo.py
 ```
 
+### Stopping the Application
+
+- Press `Ctrl+C` in the terminal to stop the Flask server
+- Deactivate the virtual environment: `deactivate`
+
 ## Project Structure
 
 ```
-hand-detect-master/
+Hand-Sign-Detection/
 ├── app.py                 # Main Flask application
 ├── demo.py               # Alternative demo script
 ├── alphabets.h5          # Trained LSTM model weights
@@ -119,3 +147,32 @@ This project is open source and available under the [MIT License](LICENSE).
 ### Performance Issues
 - Reduce video quality for better performance on slower machines
 - Ensure good lighting conditions for better hand detection
+
+### Python Version Issues
+- If MediaPipe installation fails, check your Python version
+- Use Python 3.8 to 3.12 (Python 3.13+ not yet supported by MediaPipe)
+- Create a fresh virtual environment with a compatible Python version
+
+### Virtual Environment Not Activating
+**Windows:**
+```bash
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+venv312\Scripts\activate
+```
+
+**Linux/macOS:**
+```bash
+chmod +x venv312/bin/activate
+source venv312/bin/activate
+```
+
+## Dependencies
+
+All dependencies are listed in `requirements.txt`:
+- Flask 3.0.0
+- OpenCV 4.10.0.84
+- NumPy 1.26.4
+- MediaPipe 0.10.14
+- TensorFlow 2.17.0
+
+**Note:** The virtual environment folder (`venv312/`, `.venv/`, etc.) is excluded from Git via `.gitignore`. Each user should create their own virtual environment locally.
